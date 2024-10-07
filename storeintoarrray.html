@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=" utf-8">
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+        <title>imitaion of the information</title>
+
+        <style>
+            body{
+                background-color: aliceblue;
+                text-align: center;
+                padding: 5px;
+                margin-top: 20px;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+            }
+            #bookform{
+                border: 0cap;
+                padding: 5px;
+
+            }
+            #bookform input{
+                margin-bottom: 15px;
+            }
+        </style>
+    </head>
+    <body>
+      
+
+       <form id="bookform">
+
+        <label for="title">Title:</label>
+        <input type="text" id="title" required><br>
+        <p id="titleerror"></p>
+
+
+        <label for="author">Author:</label>
+        <input  type=" text" id="author" required><br>
+        <p  id="autherror"></p>
+
+        <label for="pages">Pages:</label>
+        <input type="number" id="pages" required><br>
+        <p id="pageserror"></p>
+
+        <label for="inspiredby">Inspired BY:</label>
+        <input type="text" id="inspiredby" required><br>
+        <p id="inserror"></p>
+
+        <label  for="bookcolor">Book color:</label>
+        <input type="text" id="bookcolor" required><br>
+        <P id="bookerror"></P>
+
+        <label  for="read">Read:</label>
+        <input type="checkbox" id="read" ><br>
+        
+        
+        <button  type="button" onclick="addtolibrary()" >Submit</button>
+        
+
+       </form>
+       <ul id="library"></ul> <!--use to display the information-->
+    </body>
+</html>
+
+<!--i learnt how to take the user input and store the details into an array and display the information -->
+
+
+<script>
+    const library = [];// we create an array to store the information
+
+    function addtolibrary(){
+
+        var title = document.getElementById('title').value
+        var author = document.getElementById('author').value
+        var pages = document.getElementById('pages').value
+        var inspiredby = document.getElementById('inspiredby').value
+        var book_color = document.getElementById('bookcolor').value
+        var  read = document.getElementById('read').checked
+
+     
+
+        if ( title===''){
+          document.getElementById('titleerror').innerHTML='please enter the title'
+          return;//return will stop the function from executing if it is left blank.
+        }
+        if (author===''){
+            document.getElementById('autherror').innerHTML='plese enter the  author name'
+            return;
+        }
+        else {
+
+        const book = {
+            title :title,
+            author :author,
+            pages :pages,
+            inspiredby : inspiredby,
+            book_color :book_color,
+            read: read
+        };
+
+        library.push(book);//we created an object and push it into the library array.
+
+
+        const viewarray = document.getElementById('library');//to display the information
+        const createlist = document.createElement('li');//reate a list of values
+        createlist.textContent=`Title:${book.title} Author:${book.author} Pages:${book.pages} Inspiredby: ${book.inspiredby} Book_Color:${book.book_color} Read:${book.read? 'yes' : 'no'}`;
+        viewarray.appendChild(createlist);//appending
+
+
+        document.getElementById('bookform').reset();
+
+
+        }
+    }
+
+
+
+</script>
